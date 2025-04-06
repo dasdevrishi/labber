@@ -1,0 +1,23 @@
+# cluster/k3d/cluster-config.yaml
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: homelab
+servers: 1
+agents: 2
+ports:
+  - port: 80:80  # host:container
+    nodeFilters:
+      - loadbalancer
+  - port: 443:443
+    nodeFilters:
+      - loadbalancer
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik
+        nodeFilters:
+          - server:*
+volumes:
+  - volume: /etc/localtime:/etc/localtime:ro  # Optional; Used to sync timezone
+  - volume: ${PWD}/storage:/mnt/storage@all   # Your homelab storage path
