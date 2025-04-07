@@ -1,0 +1,15 @@
+# apps/argocd/overlays/local/kustomization.yaml
+resources:
+  - ../../base
+  - argocd-app.yaml
+
+namespace: argocd
+
+patches:
+  - target:
+      kind: Deployment
+      name: argocd-server
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: "--insecure"

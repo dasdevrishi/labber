@@ -1,0 +1,13 @@
+global:
+  image:
+    tag: v2.14.9  # Or whatever the latest is when you're reading this
+
+server:
+  service:
+    type: ClusterIP  # We'll port-forward for now
+  ingress:
+    enabled: false
+
+configs:
+  params:
+    server.insecure: true  # Disable TLS for now (dev only)
