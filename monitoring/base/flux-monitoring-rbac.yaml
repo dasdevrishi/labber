@@ -1,0 +1,29 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argocd-helm-controller-role
+  namespace: monitoring
+rules:
+  - apiGroups: ["helm.toolkit.fluxcd.io"]
+    resources: ["helmreleases/status"]
+    verbs: ["patch", "get", "update"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources: ["customresourcedefinitions"]
+    verbs: ["get", "list", "watch", "create", "patch", "update"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-helm-controller-binding
+  namespace: monitoring
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: argocd
+roleRef:
+  kind: Role
+  name: argocd-helm-controller-role
+  apiGroup: rbac.authorization.k8s.io

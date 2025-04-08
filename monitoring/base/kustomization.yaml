@@ -1,3 +1,4 @@
 resources:
   - helm-repo.yaml
   - helm-release.yaml
+  - flux-monitoring-rbac.yaml
