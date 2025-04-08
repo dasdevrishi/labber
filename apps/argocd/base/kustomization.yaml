@@ -1,5 +1,7 @@
 # apps/argocd/base/kustomization.yaml
 resources:
   - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+  - https://github.com/fluxcd/source-controller/releases/download/v1.5.0/source-controller.crds.yaml
+  - https://github.com/fluxcd/source-controller/releases/download/v1.5.0/source-controller.deployment.yaml
   - https://github.com/fluxcd/helm-controller/releases/download/v1.2.0/helm-controller.crds.yaml
   - https://github.com/fluxcd/helm-controller/releases/download/v1.2.0/helm-controller.deployment.yaml
