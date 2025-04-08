@@ -1,7 +1,8 @@
 # apps/argocd/overlays/local/kustomization.yaml
 resources:
-  - ../../base
-  - argocd-app.yaml
+  - ../../base #ArgoCD installation manifest
+  - argocd-app.yaml #Application Manifest for ArgoCD
+  - monitoring-app.yaml #Application Manifest for monitoring
 
 namespace: argocd
 
